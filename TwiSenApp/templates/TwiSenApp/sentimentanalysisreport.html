@@ -1,0 +1,23 @@
+{% extends 'TwiSenApp/base.html' %}
+
+{% block content %}
+<div class="row-style">
+    <p class="text-success text-center">{{positive}} people tweeted a positive review</p>
+    <p class="text-danger text-center">{{negative}} people tweeted a negative review</p>
+    <p class="text-warning text-center" >{{neutral}} people tweeted a neutral review</p>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Tweets</th>
+            <th>Sentiments</th>
+        </tr>
+        {% for x in tweetswithsentiments %}
+        <tr>
+            {% for y in x%}
+            <td>{{y}}</td>
+            {% endfor %}
+        </tr>
+        {%  endfor %}
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'TwiSenApp/base.html' %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{form}}
+    <div class="d-flex justify-content-center">
+        <input type="submit" name="submit" value="Search" class="btn btn-primary mt-3">
+    </div>
+</form>
+
+{% if tweets %}
+    <table class="table table-bordered table-striped row-style">
+        <tr>
+            <th>Text</th>
+            <th>ID</th>
+            <th>Length of tweet</th>
+            <th>Date</th>
+            <th>Source</th>
+            <th>Likes</th>
+            <th>Retweets</th>
+            <th>Location</th>
+        </tr>
+    {% for tweet in tweets %}
+         <tr>
+             {% for column in tweet %}
+                <td>{{column}}</td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+    </table>
+    <div class="d-flex justify-content-center">
+        <a href="{% url 'TwiSenApp:sentimentanalysis' %}" class="btn btn-primary">Do sentiment analysis of tweets</a>
+        &nbsp;
+        <a href="{% url 'TwiSenApp:savetocsv' %}" class="btn btn-primary">Save the data in CSV file</a>
+    </div>
+{% endif %}
+{% endblock %}

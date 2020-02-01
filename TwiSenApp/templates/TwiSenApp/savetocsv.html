@@ -1,0 +1,14 @@
+{% extends 'TwiSenApp/base.html' %}
+
+{% block content %}
+<form method="post">
+    {% csrf_token %}
+    {{form}}
+    <div class="d-flex justify-content-center">
+        <input type="submit" name="submit" value="Save" class="btn btn-primary mt-3">
+        {% if error %}
+            <span class="text-danger">{{error}}</span>
+        {% endif %}
+    </div>
+</form>
+{% endblock %}
